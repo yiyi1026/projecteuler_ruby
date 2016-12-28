@@ -25,32 +25,44 @@ c=Array.new(20){Array.new(20,0)}
 i=0
 
 while i<b.length
-  c[i/20][i%20]=b[i]
+  c[i/20][i%20]=b[i].to_i
   i+=1
 end
 
 def largest_product_in_a_grid(input)
   #horizonal
   sum_horizonal=0
-  for i in 0..19
-    for j in 0..16
-      result=input[i][j]+input[i][j+1]+input[i][j+2]+input[i][j+3]
+  for i in 0..19  #i for row
+    for j in 0..16  #j for line
+      result=input[i][j]*input[i][j+1]*input[i][j+2]*input[i][j+3]
       sum_horizonal=result if sum_horizonal<result
     end
   end
-  
-  p (sum_horizonal,sum_vertical,sum_diagonal,sum_antidiagonal).sum
+  #vertical
+  sum_vertical=0
+  for i in 0..16     #i for row
+    for j in 0..19   #j for line
+      result=input[i][j]*input[i+1][j]*input[i+2][j]*input[i+3][j]
+      sum_vertical=result if sum_vertical<result
+    end
+  end
+  #diagonal
+  sum_diagonal=0
+  for i in 0..16     #i for row
+    for j in 0..16   #j for line
+      result=input[i][j]*input[i+1][j+1]*input[i+2][j+2]*input[i+3][j+3]
+      sum_diagonal=result if sum_diagonal<result
+    end
+  end
+  #backdiagonal
+  sum_backdiagonal=0
+  for i in 3..19     #i for row
+    for j in 0..16   #j for line
+      result=input[i][j]*input[i-1][j+1]*input[i-2][j+2]*input[i-3][j+3]
+      sum_backdiagonal=result if sum_backdiagonal<result
+    end
+  end
+  return [sum_horizonal,sum_vertical,sum_diagonal,sum_backdiagonal].max
 end
 
-
-
-
-
-
-
-
-
-
-
-
-
+p largest_product_in_a_grid(c)
