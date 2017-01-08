@@ -14,11 +14,11 @@ end
 p largest_prime_factor(600851475143)
 
 #Solution2
-require 'prime'
-def largest_prime_factor(num)
-  
-  
-  
-  
-end
+# require 'prime'
+# def largest_prime_factor(num)
+#
+#
+#
+#
+# end
 
