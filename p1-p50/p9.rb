@@ -6,3 +6,4 @@ def spt(p)
   end
   return nil
 end
+p spt(1000)
