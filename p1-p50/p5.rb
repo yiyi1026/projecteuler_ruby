@@ -3,7 +3,6 @@ def smallest_multiple(n)
   result=1
   for i in 1..n
     result=result.lcm(i)
-    p result
   end
   return result
 end
