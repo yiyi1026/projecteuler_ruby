@@ -13,7 +13,7 @@ def even_fibonacci_numbers(n)
     lst[i+1]=lst[i-1]+lst[i]
     i+=1
   end
-  return lst[0,lst.length-1].select{|x|x%2==0}.reduce(:+)  
+  return lst.select{|x|x%2==0}.reduce(:+)
 end
 
 p even_fibonacci_numbers(4000000)
