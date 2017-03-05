@@ -10,27 +10,56 @@
 # A[P], A[p + 1], ..., A[Q - 1], A[Q] is arithmetic.In particular, this means that P + 1 < Q.
 # The function should return the number of arithmetic slices in the array A.
 
-def arithmetic_slice(arr)
+def ari_slice(arr)
   start_diff=nil
   start_idx=nil
-
-end
-
-
-a=Array.new(7, 1)
-
-#p (3..a.length).reduce(:+)+(a.length+1)*(a.length-3+1)
-
-def arithmetic_sequence(arr)
-  return nil if arr.nil? ||arr.empty?|| arr.length<=2
-  arr_diff=[]
-  arr.map.with_index { |num, idx| arr[idx+1] ? arr_diff<<num-arr[idx+1] : next }
-  cnt=[]
-
-  arr_diff.reduce do |num1, num2|
-    if num1==num2
+  rtn=[]
+  idx=0
+  until idx>arr.length-1
+    if arr[idx+1] && arr[idx+2]
+      if arr[idx]-arr[idx+1]==arr[idx+1]-arr[idx+2] &&start_diff.nil?
+        start_diff=arr[idx]-arr[idx+1]
+        start_idx=idx
+        idx+=2
+      elsif start_diff.nil?
+        idx+=1
+      elsif start_diff && start_diff==arr[idx]-arr[idx+1]
+        idx+=1
+      elsif start_diff
+        rtn<< arr[start_idx..idx]
+        start_idx=nil
+        start_diff=nil
+        idx+=1
+      end
+    elsif arr[idx+1]
+      if start_diff && start_diff==arr[idx]-arr[idx+1]
+        idx+=1
+      elsif start_diff
+        rtn<< arr[start_idx..idx]
+        start_idx=nil
+        start_diff=nil
+        idx+=1
+      else
+        idx+=1
+      end
+    else
+      if start_diff
+        rtn<< arr[start_idx..idx]
+        start_idx=nil
+        start_diff=nil
+        idx+=1
+      else
+        idx+=1
+      end
     end
   end
+  rtn
 end
 
-starting_sequence=[1, 1]
+def arithmetic_sequence(arr)
+  ari_slice=ari_slice(arr)
+  return nil if ari_slice.nil? ||ari_slice.empty?
+  ari_slice.map { |a| (1..a.length-2).reduce(:+) }.reduce(:+)
+end
+
+p arithmetic_sequence([1, 2, 3, 4])
