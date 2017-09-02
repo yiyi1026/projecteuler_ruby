@@ -13,34 +13,24 @@ Return
 ]
 =end
 
+def generate(num_rows, h={})
+  return h[num_rows] if h[num_rows]
+  if num_rows == 1
+      h[num_rows] = [[1]]
+  elsif num_rows == 2
+      h[num_rows] = [[1], [1,1]]
+  else
+      h_prev = generate(num_rows-1, h)   # all num_rows-1 lines
+      pre_prev = h_prev[-1] # the num_rows-1 line
+      prev = [0] + pre_prev + [0]
+      result = []
+      prev.each_with_index do |row, idx|
+          next if idx == 0
+          result << prev[idx-1] + row
+      end
+      h[num_rows] =  h_prev + [result]
+  end
+  h[num_rows]
 
-# def generate(num_rows)
-#   return [1] if num_rows == 1
-#   return [1, 1] if num_rows == 2
-#   prev = [0] + generate(num_rows-1) + [0]
-#   new_row = []
-#   prev.each_with_index do |el, idx|
-#       next if idx == 0
-#       new_row << prev[idx -1] + el
-#   end
-#   new_row
-# end
-def generate(num_rows, h = {})
-#   return h[num_rows] if h[num_rows]
-#   if num_rows == 1
-#       h[1] = [1]
-#       return generate(num_rows, h)
-#   elsif num_rows == 2
-#       h[2] = [1,1]
-#       return generate(num_rows, h)
-#   end
-#   prev = [0] + generate(num_rows-1, h) + [0]
-#   new_row = []
-#   prev.each_with_index do |el, idx|
-#       next if idx == 0
-#       new_row << prev[idx -1] + el
-#   end
-#   h[num_rows] = new_row
-# end
-
-p generate(5)
+end
+p generate(200)
