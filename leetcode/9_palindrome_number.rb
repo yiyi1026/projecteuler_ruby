@@ -10,3 +10,8 @@ You could also try reversing an integer. However, if you have solved the problem
 
 There is a more generic way of solving this problem.
 =end
+
+def is_palindrome(x)
+  return false if x < 0
+  x.to_s==x.to_s.reverse
+end
