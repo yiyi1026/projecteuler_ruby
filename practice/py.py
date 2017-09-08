@@ -15,4 +15,6 @@ def median(lst):
     mid = length/2
     return lst[mid]
 
-print median([6,8,12,2,23])
+# print median([6,8,12,2,23])
+# lst = [1,2,3]
+# print ",".join(str(x) for x in lst)
