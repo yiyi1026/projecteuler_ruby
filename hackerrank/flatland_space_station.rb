@@ -14,16 +14,6 @@ else
     p [m,n - 1 - sort_c.last, sort_c.first].max
 end
 
-
-
-
-
-
-
-
-
-
-
 idx = 0
 n.times do |i|
   until idx >=i && h[idx]  
