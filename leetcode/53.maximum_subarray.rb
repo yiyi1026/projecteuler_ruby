@@ -12,7 +12,7 @@ class Solution(object):
     max_ending_here = nums[0]
 
     for num in nums[1:]:
-      max_ending_here = max(nums, nums + max_ending_here)
+      max_ending_here = max(num, num + max_ending_here)
       max_so_far = max(max_so_far, max_ending_here)
     return max_so_far
 
