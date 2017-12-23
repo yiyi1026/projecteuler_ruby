@@ -95,4 +95,11 @@ c = 'baab'
 # end
 
 
-p su(a)
+# p su(a)
+# a = '101'.to_i(2)
+# b = '110'.to_i(2)
+# p a | b
+
+# p 'abcab'.index('ab')
+G=0
+G=1
