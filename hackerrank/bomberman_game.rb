@@ -34,21 +34,20 @@ def neighbour(r,c,i,j)
 end
 
 def step(grid)
-  # new_grid = grid.dup
   r, c = grid.length, grid[0].length
   r.times do |i|
     c.times do |j|
-      if grid[i][j] == 2
+      if grid[i][j] == 3
         grid[i][j] = -1
         neighbour(r,c,i,j).each do |x,y|
           case grid[x][y]
-          when 2
+          when 3
+            next
           else
-            grid[x][y] = -2
+            grid[x][y] = -1
           end
         end
-      else
-        grid[i][j] += 1
+
       end
     end
   end
