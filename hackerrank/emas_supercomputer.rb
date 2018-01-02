@@ -167,4 +167,3 @@ def max_prod(cross_sets)
 end
 
 p max_prod(cross_sets)
-
