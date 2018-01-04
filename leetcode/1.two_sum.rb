@@ -45,12 +45,12 @@ end
 # no need to do to separate iteration. When an element comes, look whether the difference exists in the hash. if true, return; else add the element to hash.
 def two_sum3(nums, target)
   result = {}
-  nums.each_with_index do |el1, idx1|
-      difference = target - el1
+  nums.each_with_index do |el, idx|
+      difference = target - el
       if result[difference]
-        return result[difference] + [idx1]
+        return result[difference] + [idx]
       end
-      result[el1] = [idx1]
+      result[el] = [idx]
   end
 
 end
