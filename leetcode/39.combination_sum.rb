@@ -14,7 +14,7 @@ A solution set is:
 ]
 '''
 @ret = []
-def combination_sum(candidates, target, idx = 0, selected=[], currentsum=0)
+def combination_sum(candidates, target, idx = 0, selected = [], currentsum = 0)
   if currentsum >= target
     @ret << selected if currentsum == target
     return 
