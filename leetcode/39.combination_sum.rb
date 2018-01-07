@@ -13,17 +13,17 @@ A solution set is:
   [2, 2, 3]
 ]
 '''
-@ret = []
-def combination_sum(candidates, target, idx = 0, selected = [], currentsum = 0)
+
+def combination_sum(candidates, target, idx = 0, selected=[], currentsum=0, ret=[])
+  # candidates.sort!
   if currentsum >= target
-    @ret << selected if currentsum == target
+    ret << selected if currentsum == target
     return 
   end
   candidates[idx..-1].each_with_index do |c,id|
-    combination_sum(candidates, target, id+idx, selected + [c], currentsum + c)
+    combination_sum(candidates, target, id+idx, selected + [c], currentsum + c, ret)
   end
-
+  ret
 end
 
 combination_sum([2,3,6,7], 7)
-p @ret
