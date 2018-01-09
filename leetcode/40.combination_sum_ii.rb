@@ -24,7 +24,6 @@ def combination_sum2(candidates, target, idx = 0,  currentsum = 0, selected = []
     end
 
     candidates[idx..-1].each_with_index do |num, id|
-      # next if selected.include?(num)
       combination_sum2(candidates, target, id+idx+1, currentsum + num, selected + [num], ret)
     end
     ret.to_a
