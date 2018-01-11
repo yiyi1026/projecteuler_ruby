@@ -14,24 +14,25 @@ Given n and k, return the kth permutation sequence.
 
 Note: Given n will be between 1 and 9 inclusive.
 '''
-# def permutation(n)
-#   return [''] if n == 0
-#   return ['1'] if n == 1
-#   prev = permutation(n-1)
-#   result = []
-#   prev.each do |str|
-#     (str.length).downto(0) do |i|
-#       result << str[0...i] + "#{n}" +str[i..-1]
-#     end
-#   end
-#   result
-# end
+def comp(n, k)
+  cnt = 2
+  k_comp = k
+  while cnt < n && k_comp >= cnt
+    k_comp /= cnt
+    cnt += 1
+  end
+  k_comp
+end
 
 def get_permutation(n, k)
-  (1..n).to_a.permutation.to_a.map(&:join)[k-1]
-    # RTE
+  return (1..n).to_a.permutation.to_a[k-1].join if k <= 5100 || k <= (1..n-1).reduce(1,:*)
+  k_comp = comp(n, k) + 1
+  k -= (2..n-1).reduce(1,:*) * (k_comp-1)
+  p k_comp
+  arr = (1...k_comp).to_a + (k_comp+1..n).to_a
+  k_comp.to_s + arr.permutation.to_a[k-1].join
 end
-# p permutation(3)
-# p get_permutation(3)
-n = 3
-p (1..n).to_a.permutation.to_a.map(&:join)
+
+n = 9
+k = 305645
+p get_permutation(n, k)
