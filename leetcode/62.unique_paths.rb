@@ -19,11 +19,11 @@ end
 
 def unique_paths(m, n)
   matrix = Array.new(m){Array.new(n,0)}
-  for i in (0...n)
-    matrix[0][i] = 1
+  for i in (0...m)
+    matrix[i][0] = 1
   end
-  for j in (0...m)
-    matrix[j][0] = 1
+  for j in (0...n)
+    matrix[0][j] = 1
   end
 
   for k in (1...m)
