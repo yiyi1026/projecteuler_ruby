@@ -18,12 +18,65 @@ The total number of unique paths is 2.
 Note: m and n will be at most 100.
 '''
 
+def unique_paths(m, n)
+  matrix = Array.new(m){Array.new(n,0)}
+  for i in (0...m)
+    matrix[i][0] = 1
+  end
+  for j in (0...n)
+    matrix[0][j] = 1
+  end
+
+  for k in (1...m)
+    for l in (1...n)
+      matrix[k][l] = matrix[k-1][l] + matrix[k][l-1]
+    end
+  end
+  matrix[m-1][n-1]
+end
+
 def unique_paths_with_obstacles(grid)
     m, n = grid.length, grid[0].length
-    m, n = n, m if m > n
-    if m == 1
-      return 0 if grid[0].all?{|el|el==0}
+    if grid[0][0] == 0
+      # obstacle = false
+      grid[0][0] = 1
+    else
+      # obstacle = true
+      grid[0][0] = 0
+    end
+    (1...n).each do |j|
+      if grid[0][j-1] == 1 && grid[0][j] == 0
+        grid[0][j] = 1
+      else
+        grid[0][j] = 0
+      end
     end
 
+    (1...m).each do |i|
+      if grid[i-1][0] == 1 && grid[i][0] == 0
+        grid[i][0] = 1
+      else
+        grid[i][0] = 0
+      end
+    end
 
+    for k in (1...m)
+      for l in (1...n)
+        if grid[k][l] == 1
+          grid[k][l] = 0
+        else
+          grid[k][l] = grid[k-1][l] + grid[k][l-1]
+        end
+      end
+    end
+    # grid
+    grid[m-1][n-1]
 end
+
+grid = [
+  [0,0,0],
+  [0,1,0],
+  [0,0,0]
+]
+
+p unique_paths_with_obstacles(grid)
