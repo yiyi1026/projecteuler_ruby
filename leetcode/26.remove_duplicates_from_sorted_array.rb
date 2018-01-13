@@ -41,4 +41,19 @@ def remove_duplicates(nums)
   i+1
 end
 
-p remove_duplicates([1,1,2,3,3,6,8,10,10,13])
+# Revised II
+def remove_duplicates(nums)
+  i = 0
+  j = 0
+  while j < nums.length
+    if nums[i] < nums[j]
+      i += 1
+      nums[i], nums[j] = nums[j], nums[i]
+    end
+    j += 1
+  end
+  i + 1
+  nums
+end
+
+p remove_duplicates([])
