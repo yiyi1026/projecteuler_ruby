@@ -56,6 +56,27 @@ def delete_duplicates(head)
 	solution.next
 end
 
+def delete_duplicates(head)
+	dummy = ListNode.new(nil)
+	dummy.next = head
+	prev = dummy
+	cur = head
+
+	while cur && cur.next
+		if cur.val == cur.next.val
+			val = cur.val
+			while cur && cur.val == val
+				cur = cur.next
+			end
+			prev.next = cur
+		else
+			prev = prev.next
+			cur = cur.next
+		end
+	end
+	dummy.next
+end
+
 arr = [1]
 head = ListNode.new(1)
 start = head
