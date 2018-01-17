@@ -34,9 +34,7 @@ def mirror(left, right)
   return true if left.nil? && right.nil?
   return false unless left && right && (left.val == right.val)
   mirror(left.right, right.left) && mirror(left.left, right.right)
-
 end
-
 
 def is_symmetric(root)
   return true if root.nil?
