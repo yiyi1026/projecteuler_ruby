@@ -32,7 +32,7 @@ end
 # @return {Boolean}
 def mirror(left, right)
   return true if left.nil? && right.nil?
-  return false if left.nil? || right.nil? || (left.val != right.val)
+  return false unless left && right && (left.val == right.val)
   mirror(left.right, right.left) && mirror(left.left, right.right)
 
 end
