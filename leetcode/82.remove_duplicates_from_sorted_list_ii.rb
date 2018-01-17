@@ -77,17 +77,12 @@ def delete_duplicates(head)
 	dummy.next
 end
 
-arr = [1]
+arr = [3,3,4,5,6,6,7]
 head = ListNode.new(1)
 start = head
 arr.each do |val|
   start.next = ListNode.new(val)
   start = start.next
 end
-# start.next = ListNode.new(start.val)
-# start = start.next
-# start.next = ListNode.new(start.val)
-
-p head
 
 p delete_duplicates(head)
