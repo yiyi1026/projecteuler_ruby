@@ -40,3 +40,24 @@ def add_two_numbers(l1, l2)
   end
   head.next
 end
+
+# revised
+def add_two_numbers(l1, l2)
+  acc_1 = l1
+  acc_2 = l2
+  solution = ListNode.new(nil)
+  acc_s = solution
+  carry = 0
+  until acc_1.nil? && acc_2.nil? && carry == 0
+    acc_1 = ListNode.new(0) if acc_1.nil?
+    acc_2 = ListNode.new(0) if acc_2.nil?
+
+    temp_acc = acc_1.val + acc_2.val + carry
+    carry = temp_acc/10
+    acc_s.next = ListNode.new(temp_acc%10)
+    acc_s = acc_s.next
+    acc_1 = acc_1.next
+    acc_2 = acc_2.next
+  end
+  solution.next
+end

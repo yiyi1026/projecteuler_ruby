@@ -44,15 +44,15 @@ end
 # space complexity is O(n)
 # no need to do to separate iteration. When an element comes, look whether the difference exists in the hash. if true, return; else add the element to hash.
 def two_sum3(nums, target)
-  result = {}
-  nums.each_with_index do |el, idx|
-      difference = target - el
-      if result[difference]
-        return result[difference] + [idx]
-      end
-      result[el] = [idx]
-  end
+  hash = {}
 
+  nums.each_with_index do |num, idx|
+    if hash[num]
+      return [hash[num], idx]
+    else
+      hash[target-num] = idx
+    end
+  end
 end
 
 
