@@ -56,7 +56,6 @@ def swap_pairs(head)
 
 end
 
-
 start = ListNode.new(1)
 start.next = ListNode.new(2)
 head = start.next
