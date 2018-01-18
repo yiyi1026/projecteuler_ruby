@@ -36,6 +36,7 @@ def level_order(root)
     len = arr.length
     sol_el = []
     queue_el = []
+    p arr
     len.times do |_|
       el = arr.shift
       next if el.nil?
