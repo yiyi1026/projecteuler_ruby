@@ -16,24 +16,47 @@ end
 
 # @param {ListNode} head
 # @return {ListNode}
-def delete_duplicates(head)
-  return head if head.nil? || head.val.nil?
-  result = ListNode.new(head.val)
-  result_acc = result
-  head_acc = head
-  lookup = {head.val => true}
+# def delete_duplicates(head)
+#   return head if head.nil? || head.val.nil?
+#   result = ListNode.new(head.val)
+#   result_acc = result
+#   head_acc = head
+#   lookup = {head.val => true}
   
-  until head_acc.nil?
-    if lookup[head_acc.val]
-      head_acc = head_acc.next
+#   until head_acc.nil?
+#     if lookup[head_acc.val]
+#       head_acc = head_acc.next
+#     else
+#       lookup[head_acc.val] = true
+#       result_acc.next = ListNode.new(head_acc.val)
+#       result_acc = result_acc.next
+#       head_acc = head_acc.next
+#     end
+#   end
+#   result
+# end
+
+def delete_duplicates(head)
+  return head if head.nil? || head.next.nil?
+  dummy = ListNode.new(nil)
+  dummy.next = head
+  slow = head
+  fast = head
+  cur = head.val
+
+  until fast.nil?
+    if cur == fast.val
+      fast = fast.next
     else
-      lookup[head_acc.val] = true
-      result_acc.next = ListNode.new(head_acc.val)
-      result_acc = result_acc.next
-      head_acc = head_acc.next
+      slow.next = fast
+      cur = fast.val
+      fast = fast.next
+      slow = slow.next
     end
   end
-  result
+
+  slow.next = nil
+  dummy.next
 end
 
 arr = [2,3,4,5]
@@ -46,5 +69,5 @@ end
 start.next = ListNode.new(start.val)
 start = start.next
 start.next = ListNode.new(start.val)
+p head
 p delete_duplicates(head)
-# p remove_nth_from_end(head,5)
