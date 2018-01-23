@@ -39,7 +39,7 @@ def generate(num_rows)
   prev = generate(num_rows-1)
   last = prev.last
   p last
-  last << 1 if last.length < 2
+  last =[] if last.length < 2
   new_el = [1]
   last.each_cons(2) do |a,b|
     new_el << a + b
