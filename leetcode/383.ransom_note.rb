@@ -10,19 +10,38 @@ canConstruct("a", "b") -> false
 canConstruct("aa", "ab") -> false
 canConstruct("aa", "aab") -> true
 '''
+# def can_construct(ransom_note, magazine)
+#   hash = Hash.new(0)
+#   ransom_note.each_char do |chr|
+#     hash[chr] += 1
+#   end
 
+#   mag_hash = Hash.new(0)
+#   magazine.each_char do |char|    
+#     mag_hash[char] += 1
+#   end
+
+#   hash.all?{|k,v|mag_hash[k] && mag_hash[k] >= v}
+# end
+
+# revised
 def can_construct(ransom_note, magazine)
-  hash = Hash.new(0)
-  ransom_note.each_char do |chr|
-    hash[chr] += 1
+  hash = {}
+  magazine.each_char do |chr|
+    if hash[chr]
+      hash[chr] += 1
+    else
+      hash[chr] = 1
+    end
   end
 
-  mag_hash = Hash.new(0)
-  magazine.each_char do |char|    
-    mag_hash[char] += 1
+  ransom_note.each_char do |char|
+    return false unless hash[char]      
+    hash[char] -= 1
+    return false if hash[char] < 0
   end
 
-  hash.all?{|k,v|mag_hash[k] && mag_hash[k] >= v}
+  true
 end
 
 p can_construct('a', 'b')
