@@ -31,4 +31,12 @@ def search_insert(nums, target)
   len
 end
 
+def search_insert(nums, target)
+  i = 0
+  len = nums.length
+  i += 1 until i == len || nums[i] >= target
+  i
+end
+
+
 p search_insert([1,3,5,6], 7)
