@@ -36,23 +36,44 @@ end
 #   result
 # end
 
+# revised 1
+# def delete_duplicates(head)
+#   return head if head.nil? || head.next.nil?
+#   dummy = ListNode.new(nil)
+#   dummy.next = head
+#   slow = head
+#   fast = head
+#   cur = head.val
+
+#   until fast.nil?
+#     if cur == fast.val
+#       fast = fast.next
+#     else
+#       slow.next = fast
+#       cur = fast.val
+#       fast = fast.next
+#       slow = slow.next
+#     end
+#   end
+
+#   slow.next = nil
+#   dummy.next
+# end
+
+# revised 2
 def delete_duplicates(head)
   return head if head.nil? || head.next.nil?
   dummy = ListNode.new(nil)
   dummy.next = head
   slow = head
   fast = head
-  cur = head.val
 
   until fast.nil?
-    if cur == fast.val
-      fast = fast.next
-    else
+    unless slow.val == fast.val
       slow.next = fast
-      cur = fast.val
-      fast = fast.next
       slow = slow.next
     end
+    fast = fast.next
   end
 
   slow.next = nil
