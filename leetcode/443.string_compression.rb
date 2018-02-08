@@ -100,7 +100,7 @@ def compress(chars)
   j = 0
   while i < chars.length
     cnt = 0
-    until j + cnt == chars.length || chars[cnt + j] != chars[i]
+    while chars[j + cnt] && chars[cnt + j] == chars[i]
       cnt += 1
     end
     if j + cnt == chars.length || cnt > 1
