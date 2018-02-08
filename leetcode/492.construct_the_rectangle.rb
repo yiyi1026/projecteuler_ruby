@@ -16,17 +16,25 @@ But according to requirement 2, [1,4] is illegal; according to requirement 3,  [
 
 # @param {Integer} area
 # @return {Integer[]}
+# def construct_rectangle(area)
+#   w_max = (area**0.5).floor
+#   return [w_max, w_max] if w_max ** 2 == area
+#   start = w_max
+#   result = []
+#   until start <= 1
+#     start -= 1 until area % start == 0
+#     if result.empty? || (area/start - start) < result[1] - result[0]
+#       result = [area/start, start]  
+#     end
+#     start -= 1
+#   end
+#   result.empty? ? [area, 1] : result
+# end
+  
 def construct_rectangle(area)
-  w_max = (area**0.5).floor
-  return [w_max, w_max] if w_max ** 2 == area
-  start = w_max
-  result = []
-  until start <= 1
-    start -= 1 until area % start == 0
-    if result.empty? || (area/start - start) < result[1] - result[0]
-      result = [area/start, start]  
-    end
+  start = (area**0.5).floor
+  until area % start == 0
     start -= 1
   end
-  result.empty? ? [area, 1] : result
+  [area/start, start]
 end
