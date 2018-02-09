@@ -13,3 +13,13 @@ Example 2:
 Input: 1
 Output: 0
 Explanation: The binary representation of 1 is 1 (no leading zero bits), and its complement is 0. So you need to output 0.'''
+
+def find_complement(num)
+  start = 1
+  while start <= num
+    start <<= 1
+    # to get the first start = 2**n larger than num
+  end
+  # minus one to get the same length as num but full of 1 digits
+  num ^ (start - 1)
+end
