@@ -30,5 +30,6 @@ def sum_of_left_leaves(root, left = false)
   elsif root.left.nil? && root.right.nil?
     return left ? root.val : 0
   else
+    return sum_of_left_leaves(root.left, true) + sum_of_left_leaves(root.right, false)
   end
 end
