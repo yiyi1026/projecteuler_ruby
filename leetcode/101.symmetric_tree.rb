@@ -31,10 +31,10 @@ end
 # @param {TreeNode} root
 # @return {Boolean}
 def mirror(left, right)
-  return true if left.nil? && right.nil?
-  return false unless left && right && (left.val == right.val)
-  mirror(left.right, right.left) && mirror(left.left, right.right)
-end
+	return true if left.nil? && right.nil?
+	return false if left.nil? || right.nil? || (left.val != right.val)
+	mirror(left.left, right.right) && mirror(left.right, right.left)
+end 
 
 def is_symmetric(root)
   return true if root.nil?
