@@ -63,45 +63,49 @@ Output: "bb"
 
 #   s[start...start+maxlen]
 # end
-def longest_palindrome(str)
-  len = str.length
-  return nil if len == 0
 
+# revised
+def longest_palindrome(s)
+  return '' if s.empty?
+  return s if s==s.reverse
+  len = s.length
+  start_idx = 0 
   table = Array.new(len){Array.new(len)}
   max_len = 1
-
-  # single char
-  len.times do |i|
+  for i in (0...len)
     table[i][i] = true
-    max_len = 1
+    # start_idx = i
   end
   
-  start_idx = 0
-  # 2 continuous same chars
-  (len-1).times do |j|
-    if str[j] == str[j+1]
-      table[j][j+1] = true
-      start_idx = j
+  for i in (0...len-1)
+    if s[i] == s[i+1]
+      table[i][i+1] = true
       max_len = 2
+      start_idx = i
     end
+      
   end
-
-  k = 3 # current length of substring
+  
+  k = 3 # current_length_of_subs
+  
   while k <= len
-    i= 0
-    while i + k - 1 < len
+    i = 0
+    
+    while i+k-1 < len
       j = i + k - 1
-      if table[i+1][j-1] = true && str[i] == str[j]
+      if table[i+1][j-1] && (s[i] == s[j])
         table[i][j] = true
         if k > max_len
-          start_idx = i
           max_len = k
+          start_idx = i
         end
       end
       i += 1
     end
     k += 1
   end
-  max_len
+  s[start_idx...start_idx+max_len]
 end
-p longest_palindrome('ababbabc')
+p longest_palindrome('ac')
+
+def longest_palindrome(s)
