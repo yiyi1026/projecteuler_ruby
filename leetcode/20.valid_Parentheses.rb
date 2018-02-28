@@ -38,3 +38,20 @@ def is_valid(s)
   end
   str.empty?
 end
+
+def is_valid(s)
+  test=[]
+  s.chars.each do |char|
+    case char
+    when "[","{","("
+      test.push(char)
+    when  "}"
+      return false unless test.pop == "{"
+    when  "]"
+      return false unless test.pop == "["
+    when  ")"
+      return false unless test.pop == "("
+    end
+  end
+  true
+end
