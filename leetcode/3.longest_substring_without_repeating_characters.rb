@@ -9,22 +9,42 @@ Given "bbbbb", the answer is "b", with the length of 1.
 
 Given "pwwkew", the answer is "wke", with the length of 3. Note that the answer must be a substring, "pwke" is a subsequence and not a substring.
 '''
+# def length_of_longest_substring(s)
+#   max_length = 0
+#   start_idx = -1
+#   hash = {} # key -> value is char -> idx
+
+#   s.chars.each_with_index do |char, idx|
+#     current_idx = hash[char]
+#     if current_idx && current_idx > start_idx
+#       # reset start idx if char occurs twice
+#       start_idx = current_idx
+#     end
+
+#     hash[char] = idx
+#     len = idx - start_idx
+#     max_length = len if max_length < len
+#   end
+
+#   max_length
+# end
+
 def length_of_longest_substring(s)
-  max_length = 0
-  start_idx = -1
-  hash = {} # key -> value is char -> idx
-
-  s.chars.each_with_index do |char, idx|
-    current_idx = hash[char]
-    if current_idx && current_idx > start_idx
-      # reset start idx if char occurs twice
-      start_idx = current_idx
+  solution = 0
+  hash = {}
+  len = s.length
+  
+  j = 0
+  for i in 0...len
+    while j < len && !hash[s[j]]
+      hash[s[j]] = true
+      j += 1    
     end
+    
+    solution = [solution, j-i].max
+    hash[s[i]] = false
 
-    hash[char] = idx
-    len = idx - start_idx
-    max_length = len if max_length < len
   end
-
-  max_length
+  
+  return solution
 end
