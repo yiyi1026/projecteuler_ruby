@@ -28,38 +28,36 @@
 # walk through each character and count how many times of their appearance.
 # if one character appears less than k times, then possible answers should only appear in substrings before this character or after this character(this character wouldn't be in the substring of the final answer)
 # condition to terminate recursion: when the substring has less than k characters.
-
 def longest_substring(s, k)
-  return 0 if (k < 1) || s.empty? || s.length < k
-  hash = Hash.new{|h,k|h[k] = 0}
+  return 0 if (s.empty?) || (s.length < k)
 
-  s.each_char do |char|
-    hash[char] += 1
-  end
+  hash = Hash.new{|h,key|h[key] = 0}
+  s.each_char{|ch|hash[ch] += 1}
+
+  return s.length if hash.all?{|_,v|v >= k}
 
   possible_subs = []
-  last_idx = -1
-  return k if hash.length == 1 && hash.values[0] == k
-  s.split("").each_with_index do |ch, idx|
-    if hash[ch] < k
-      possible_subs << s[last_idx+1...idx]
-      last_idx = idx
-
+  last_slice_idx = -1
+  s.chars.each_with_index do |char, idx|
+    if hash[char] < k
+      possible_subs << s[last_slice_idx+1...idx]
+      last_slice_idx = idx
     end
   end
-  if last_idx < 0
-    return s.length
+
+  if last_slice_idx < s.length - 1
+    possible_subs << s[last_slice_idx+1..-1]
   end
-  possible_subs << s[last_idx+1..-1]  if last_idx < s.length - 1
 
   longest = 0
   possible_subs.each do |sub|
-    longest = [longest, longest_substring(sub,k)].max
+    longest = [longest, longest_substring(sub, k)].max
   end
 
-  longest
+  return longest
 end
 
-s = "ababbc"
-k = 2
+s = "bbaaacbd"
+k = 3
 p longest_substring(s,k)
+
