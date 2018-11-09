@@ -53,5 +53,5 @@ def is_valid(s)
       return false unless test.pop == "("
     end
   end
-  true
+  test.empty?
 end
