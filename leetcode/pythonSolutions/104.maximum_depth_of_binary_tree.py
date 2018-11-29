@@ -34,7 +34,7 @@ class Solution:
         :rtype: int
         """
         if root:
-            return 1 + max([self.depth(root.left), self.depth(root.right)])
+            return 1 + max(self.maxDepth(root.left), self.maxDepth(root.right))
         else:
             return 0
 
